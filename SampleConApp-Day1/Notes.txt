@@ -1,0 +1,81 @@
+Visual Studio Training for Resilience 2022
+
+Software: 
+1. Windows OS. 
+2. Visual Studio(Community edition-2019 or later)
+3. MS SQL Server 2018 or later.(Express edition is also fine). 
+4. Nuget Packages provided by Visual Studio. 
+
+What is Dot-NET?
+.NET is a free cross platform(Can run on multiple platforms) developer platform for building many kinds of Applications targetting various kinds of devices using a variety of programming languages. 
+.NET can now be executed on Unix platforms as well as OpenOS platforms.
+
+MS.NET is a term that is used for the .NET platform. The platform contains compilers, executional environments as well as documentations to build applications using this platform. It also contains large number of predefined classes and interfaces grouped as .NET Framework which can be used for developing the code required for the Applications development. 
+.NET Framework is a part of the .NET Platform which contains the APIs required for developing the .NET Applications.
+
+What is CLR?
+The place of executing the apps of .NET is called as CLR(Common Language Runtime). CLR is the place where UR programs are executed with high optimization of the execution. CLR internally contains lots of components that make UR code work faster. This includes Class Loaders, Garbage collection and optimization for the OS on which the .NET is running. 
+
+What is C#? 
+C# is a programming language very similar to C++ but is designed specifically to create .NET based Applications. C# is not the only programming language of .NET platform. But C# is the most popular language of .NET which is created by MS to work and develop .NET Based Apps.  
+Other languages of .NET are VB.NET, J#, Python, Perl, Cobol, Pascal, Ruby on Rails and many more.
+C# is the most popular language for developing .NET Apps. It is built by MS for working on .NET only. It has features of C++ with more power and capabilities. 
+
+What is VS?
+Visual Studio is an IDE for developing Applications on Windows and other devices. VS is not only used for developing .NET Apps but also other kinds of Apps. For professional development of .NET Apps we use VS IDE. 
+It is propritory product. U need a license to use this IDE. However for learning purposes, U can download a free version of it called as Community Edition. 
+Dont confuse with VS Code, an opensource IDE for internet apps.
+
+How to create a .NET App using C#?
+1. U create files and write code in C# language using Text editor and save them with extension .cs.
+2. Run the code thru the C# Compiler available free of cost from the .NET platform download. 
+3. The Code will generate a file called .EXE file which is used to run the Program. 
+ 
+Project template for learning C# language: C# Console App(.NET Framework) 
+
+Data Types in C#:
+All the data types in C# are based on Common Type System(CTS) provided by the .NET Framework. 
+CTS is a group of common data types supported by .NET Platform. All programming languages of the .NET will have the same types defined by the CTS. The data types are common for all the programming languages of .NET. 
+The data types are of 2 kinds: Value Types and Reference types. 
+Value Types are primitive data types and structures. 
+Reference Types are classes. 
+Value Types: (Variables will store the value. All value types are internally structs)
+Integral Types: byte(Byte), short(Int16),  int(Int32) and long(Int64)) The names in braces are the CTS names of the type. 
+Floating Types: float(Single), double(Double), decimal(Decimal)
+Other Types: char(Char), bool(Boolean), DateTime. 
+User Defined Types: structs and Enums
+
+Reference types: They are reference variables represented as objects of classes.(Variables stores the address of the value. They are classes internally) 
+Strings, Arrays, Delegates and all classes of the .NET Framwork. 
+From .NET 3.5, we have implicit typed variables called var. var is a convinient way of declaring local variables in newer versions of .NET. 
+
+For converting one type to another in C#/.NET we use casting very similar to C style casting. Alternatively U can use a class called Convert that allows to convert a value from any type to another. This is prefered way of data conversion. The rules of casting are applicable. 
+Lower range values will be implicitly converted to higher range types. But the reverse of it needs to be casted or explicitly converted. 
+---------------------------Assignments for Day 1-----------------------------------------------------------
+Create a C# program to convert from celsius degrees to Kelvin and Fahrenheit: it will ask the user for the amount of celsius degrees and using the following conversion tables:
+
+kelvin = celsius + 273
+
+fahrenheit = celsius x 18 / 10 + 32
+---------------------------------------------------------------------------------------------
+Write a C# program to ask the user for a number and display its multiplication table, using a "while" statement. The result must be like this:
+5 x 1 = 5
+5 x 2 = 10
+5 x 3 = 15
+-----------------------------------------------------------------------------------------------
+Create a C# program to ask the user for 10 real numbers and display the average of the positive ones and the average of the negative ones.
+
+------------------------------------------------------------------------------------------------
+Implement the body for the following function:
+static boolean isValidDate(int year, int month, int day) { 
+	// do stuff here
+	return false; 
+}
+
+The function should check if the parameter values constitute a valid calendar date or not. Accordingly return true or false.
+For example,
+1) year=2018, month=13, day=1 is an invalid date as the possible values for month is 1 to 12.
+2) year=2018, month=2, day=29 is an invalid date as the maximum days in February is 28 in the year 2018
+3) year=2016, month=2, day=29 is a valid date.
+Write a  program to call the above function multiple times with different values.
+/////////////////////////////////////////////////////Day 2///////////////////////////////////////////////////////////////
