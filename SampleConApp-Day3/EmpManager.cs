@@ -8,11 +8,12 @@ namespace SampleConApp_Day3
     /// </summary>
     class EmpManager
     {
-        private Employee[] _employees = new Employee[10]; //private means that this field is not available outside the class. In this case, the _employees size is 10 and all are set to their default value null.
+        private Employee[] _employees; //private means that this field is not available outside the class. In this case, the _employees size is 10 and all are set to their default value null.
 
         //Constructor is a function that is invoked when U create an object of this class. 
-        public EmpManager()
+        public EmpManager(int size)
         {
+            _employees = new Employee[size];
             _employees[0] = new Employee { EmpAddress = "Bangalore", EmpId = 111, EmpName = "Phaniraj", EmpSalary = 60000, Gender = Gender.Mr };
             _employees[1] = new Employee { EmpAddress = "Mysore", EmpId = 112, EmpName = "Mahesh", EmpSalary = 63000, Gender = Gender.Mr };
             _employees[2] = new Employee { EmpAddress = "Bangalore", EmpId = 113, EmpName = "Supriya", EmpSalary = 70000, Gender = Gender.Mr };
@@ -81,11 +82,13 @@ namespace SampleConApp_Day3
 
     }
 
-    class MainProgram
+    class EmpManagerApp
     {
         static void Main(string[] args)
         {
-            EmpManager empManager = new EmpManager();
+            Console.WriteLine("Enter the Size of Employees");
+            int size = int.Parse(Console.ReadLine());
+            EmpManager empManager = new EmpManager(size);
             empManager.AddEmployee(new Employee { EmpAddress ="Bangalore", EmpId =116, EmpName ="Akshay" , EmpSalary = 40000, Gender = Gender.Mr});
 
             Employee foundEmp = empManager.FindEmployee(114);
