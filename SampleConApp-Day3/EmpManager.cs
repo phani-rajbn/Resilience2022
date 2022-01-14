@@ -80,6 +80,26 @@ namespace SampleConApp_Day3
             return true;
         }
 
+        /// <summary>
+        /// Updates the existing Employee with details based on the ID of the Employee
+        /// </summary>
+        /// <param name="emp"></param>
+        public void UpdateEmployee(Employee emp)
+        {
+            //iterate the collection and find the matching record based on id
+            for (int i = 0; i < _employees.Length; i++)
+            {
+                if((_employees[i] != null) && (_employees[i].EmpId == emp.EmpId))
+                {
+                    _employees[i].EmpName = emp.EmpName;
+                    _employees[i].EmpAddress = emp.EmpAddress;
+                    _employees[i].EmpSalary = emp.EmpSalary;
+                    return;
+                }
+            }
+            Console.WriteLine("No employee found to update");
+        }
+
     }
 
     class EmpManagerApp
@@ -97,6 +117,7 @@ namespace SampleConApp_Day3
                 Console.WriteLine("the details are as follows:");
                 Console.WriteLine($"Name: {foundEmp.EmpName}\nAddress:{foundEmp.EmpAddress}");
             }
+            empManager.UpdateEmployee(new Employee { EmpAddress = "Bangalore", EmpId = 116, EmpName = "Akshay", EmpSalary = 40000, Gender = Gender.Mr });
         }
     }
 }
