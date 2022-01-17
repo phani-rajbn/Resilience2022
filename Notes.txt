@@ -1,0 +1,141 @@
+Visual Studio Training for Resilience 2022
+
+Software: 
+1. Windows OS. 
+2. Visual Studio(Community edition-2019 or later)
+3. MS SQL Server 2018 or later.(Express edition is also fine). 
+4. Nuget Packages provided by Visual Studio. 
+
+What is Dot-NET?
+.NET is a free cross platform(Can run on multiple platforms) developer platform for building many kinds of Applications targetting various kinds of devices using a variety of programming languages. 
+.NET can now be executed on Unix platforms as well as OpenOS platforms.
+
+MS.NET is a term that is used for the .NET platform. The platform contains compilers, executional environments as well as documentations to build applications using this platform. It also contains large number of predefined classes and interfaces grouped as .NET Framework which can be used for developing the code required for the Applications development. 
+.NET Framework is a part of the .NET Platform which contains the APIs required for developing the .NET Applications.
+
+What is CLR?
+The place of executing the apps of .NET is called as CLR(Common Language Runtime). CLR is the place where UR programs are executed with high optimization of the execution. CLR internally contains lots of components that make UR code work faster. This includes Class Loaders, Garbage collection and optimization for the OS on which the .NET is running. 
+
+What is C#? 
+C# is a programming language very similar to C++ but is designed specifically to create .NET based Applications. C# is not the only programming language of .NET platform. But C# is the most popular language of .NET which is created by MS to work and develop .NET Based Apps.  
+Other languages of .NET are VB.NET, J#, Python, Perl, Cobol, Pascal, Ruby on Rails and many more.
+C# is the most popular language for developing .NET Apps. It is built by MS for working on .NET only. It has features of C++ with more power and capabilities. 
+
+What is VS?
+Visual Studio is an IDE for developing Applications on Windows and other devices. VS is not only used for developing .NET Apps but also other kinds of Apps. For professional development of .NET Apps we use VS IDE. 
+It is propritory product. U need a license to use this IDE. However for learning purposes, U can download a free version of it called as Community Edition. 
+Dont confuse with VS Code, an opensource IDE for internet apps.
+
+How to create a .NET App using C#?
+1. U create files and write code in C# language using Text editor and save them with extension .cs.
+2. Run the code thru the C# Compiler available free of cost from the .NET platform download. 
+3. The Code will generate a file called .EXE file which is used to run the Program. 
+ 
+Project template for learning C# language: C# Console App(.NET Framework) 
+
+Data Types in C#:
+All the data types in C# are based on Common Type System(CTS) provided by the .NET Framework. 
+CTS is a group of common data types supported by .NET Platform. All programming languages of the .NET will have the same types defined by the CTS. The data types are common for all the programming languages of .NET. 
+The data types are of 2 kinds: Value Types and Reference types. 
+Value Types are primitive data types and structures. 
+Reference Types are classes. 
+Value Types: (Variables will store the value. All value types are internally structs)
+Integral Types: byte(Byte), short(Int16),  int(Int32) and long(Int64)) The names in braces are the CTS names of the type. 
+Floating Types: float(Single), double(Double), decimal(Decimal)
+Other Types: char(Char), bool(Boolean), DateTime. 
+User Defined Types: structs and Enums
+
+Reference types: They are reference variables represented as objects of classes.(Variables stores the address of the value. They are classes internally) 
+Strings, Arrays, Delegates and all classes of the .NET Framwork. 
+From .NET 3.5, we have implicit typed variables called var. var is a convinient way of declaring local variables in newer versions of .NET. 
+
+For converting one type to another in C#/.NET we use casting very similar to C style casting. Alternatively U can use a class called Convert that allows to convert a value from any type to another. This is prefered way of data conversion. The rules of casting are applicable. 
+Lower range values will be implicitly converted to higher range types. But the reverse of it needs to be casted or explicitly converted. 
+---------------------------Assignments for Day 1-----------------------------------------------------------
+Create a C# program to convert from celsius degrees to Kelvin and Fahrenheit: it will ask the user for the amount of celsius degrees and using the following conversion tables:
+
+kelvin = celsius + 273
+
+fahrenheit = celsius x 18 / 10 + 32
+---------------------------------------------------------------------------------------------
+Write a C# program to ask the user for a number and display its multiplication table, using a "while" statement. The result must be like this:
+5 x 1 = 5
+5 x 2 = 10
+5 x 3 = 15
+-----------------------------------------------------------------------------------------------
+Create a C# program to ask the user for 10 real numbers and display the average of the positive ones and the average of the negative ones.
+
+------------------------------------------------------------------------------------------------
+Implement the body for the following function:
+static boolean isValidDate(int year, int month, int day) { 
+	// do stuff here
+	return false; 
+}
+
+The function should check if the parameter values constitute a valid calendar date or not. Accordingly return true or false.
+For example,
+1) year=2018, month=13, day=1 is an invalid date as the possible values for month is 1 to 12.
+2) year=2018, month=2, day=29 is an invalid date as the maximum days in February is 28 in the year 2018
+3) year=2016, month=2, day=29 is a valid date.
+Write a  program to call the above function multiple times with different values.
+/////////////////////////////////////////////////////Day 3///////////////////////////////////////////////////////////////
+Enums are called as Named constants. If U wish to place a certain value identified by a name from a group of such values, we group the values as Enum with some identical names and use them rather than having numbers or ids. 
+Enums are user defined value types. Details of any enums could be obtained by a .NET Class called System.Enum. This class has functions and properties to access any Enums declared in the Application.  
+Enums internally have a value of an integral type(Integer). It starts with 0 unless U change it.
+Even though enums help in resolving user errors, but it is not helpful when U want to modify the Enums(Adding new values or removing old ones).
+
+Classes are user defined types which provide object oriented approach for building Ur code. They are composite types which will internally have a group of data belonging to different data types. U can have functions or properties to manipulate the data. Usually the data will be hidden to the outside world. And Functions provide accessors to these data for reading, writing and manipulating. 
+Classes adds more advantages and features which is obtained thru OOP. This includes inheritance, polymorphism, abstraction, encapsulation etc. 
+Classes are created to represent real world entities. 
+
+Methods in the class are functions that are used to manipulate the data of the class. 
+There can be static methods and instance methods. static methods are singleton methods. It means that it can be called without creating any instance of the class. Static methods are called by the name of the class, not by its instance. 
+Instance methods are created when U R working with data that is specific to individual instances. 
+Static methods are invoked from any where of the program. Instance methods cannot be invoked from anywhere without createing any instance. Thru instance U can call its methods if it is scoped. 
+Main, the entry point of the App is a static method in C#. Main is invoked without creating the instance of the class. 
+Console class and the Convert class has only static members in them, so U never create any instance of that class and call its members. 
+Parameters of a function are always pass by value in C#. The parameter will contain the copy of the variable passed and any change U make to the parameter within the function will not affect the original variable. 
+Using ref keyword, the compiler will pass the original variable itself as the parameter and any change U make will reflect on the original variable. 
+All reference types will have this feature. Arrays when passed as argument to a function will retain the values after the function as returned. 
+
+SOLID Principles:
+Every OOP based language uses SOLID  principles to implement the features of OOP. 
+S: Single Responsibility Principle
+O: Open Closed Principle
+L: Luskov's Substitution Principle
+I: Intefacec Segregation Principle
+D: Dependency Inversion Principle 
+
+A class or a function should do only one job: Modularity. U should create seperate classes for seperate features. U should not mix data related operations with UI or IO operations. Each task should be less dependent on the other. UR code should not have any direct dependency on any other part of the Application. This leads to a concept called Layered Architecture. Divide the classes based on the purpose. 
+Entities are created as Entity classes with only properties in them. Entities will be based on the DOMAIN of the Application.  
+Data Classes will have functions that interact with databases and help in traversing the data b/w the database and the Application. (Data Layers)
+UI related classes will have User interactions like Console, MessageBoxes, Forms to take inputs and many more which will be the User interface of the Application. UI should not do more than just taking inputs and displaying the outputs.(WinForms, MVC, ASP.NET Web forms, Console) 
+Business classes enforce the business rules of the application like validations, data purity(matches the requirements of the business including sorting, pulling the data). 
+Classes for Exception handling, logging of messages and other activities can come under Common classes. 
+
+Create a class called Patient and should have  properties like Id, Name, DateOfbirth, DateOfVisit, DoctorName and Fees. 
+Develop a program to take input from the User for a single patient and display the details  of that patient.
+------------------------------------------------------------------------------------------------------
+Open Closed Principle: A Class is closed for modification but is open for extension. A class once created is closed for any modification. So its good practise to design the class properly before you send it for development and deployment. Once the class is created, it is  closed for modification. Classes are immutable. However, UR class is open for extension. U can extend UR class either for adding new methods or modifying existing methods. 
+Adding new methods is done by extending the class to another in the form of inheritance and modifying the methods of the class can be done using Method overriding(Change in implementation without altering the name, parameters of the method)/Method overloading(change in parameters). 
+Based on Open-Closed Principle, we have a feature called as INHERITANCE.
+The class that is extended is called as PARENT/BASE/SUPER class and the class which extends it is called as CHILD/DERIVED/SUB class. 
+In .NET, inheritance is single in nature, it means that UR class cannot have multiple parent classes with it.  U can have multi-level inheritance, where a class can be further derived into an other like a chain of hierarchy
+
+A Base class instance can be substituted by any of the derived class objects as long as they maintain their functional scope in a proper manner. 
+
+After inheritance, the next feature is Method overriding. It is also called as Runtime polymorphism. 
+If U have a method in a base class and U wish to modify the method in the derived class, U can do so by recreating the method with the same signature(MethodName, return type, paramters and its type and sequence) and implement it as per your new requirement. With this, the base class objects when instantiated to a derived class, and call this method, it would invoke the derived class version not the base version. This is the advantage of method overidding. 
+A function that is allowed to be overriden by the derived  class should be marked as virtual, else the function cannot be overriden. 
+The derived class will notify the system that the function has changed by redefining the function with a modifier called override. Only virtual, override and abstract methods in the base class can be overriden in the derived class. 
+It is called as Runtime polymorphism as the object behaves differently based on the type to which it is instantiated. 
+If a method in the base class is not a virtual method and the derived class tries to modify it, it can be done without writing override keyword. But the polymorphic behavior is lost. The base class object is unaware of the new implementation. Infact the VS will give a warning. however U can remove the warning by placing new keyword in the derived function. new keyword tells the compiler that this method is new implementation of the class and is not related to the base method. 
+
+Abstract class is a feature of OOP based on method overriding, but in this case, the method is not defined in the base class.  The method will not have implementation, the derived class will/must implement it. 
+The class must contain one or more such methods which dont have implementation. These methods are called Abstract methods. The class is declared with a modifier called abstract. As the class is incomplete, the class cannot be instantiated. The derived classes which implement those abstract methods will be substituted for the base class and used. Abstract classes can have normal methods, virtual methods and even override methods along with abstract methods. 
+
+
+
+
+
+
