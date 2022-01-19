@@ -52,64 +52,18 @@ namespace SampleConApp_Day6
             Drug FindDrug(int drugNo);
             void DeleteDrug(int id);
         }
-        class DrugFileManager : IDrugManager
-        {
-            public void DeleteDrug(int id)
-            {
-                throw new NotImplementedException();
-            }
 
-            public Drug[] FindDrug(string name)
-            {
-                throw new NotImplementedException();
-            }
-
-            public Drug FindDrug(int drugNo)
-            {
-                throw new NotImplementedException();
-            }
-
-            public void RegisterNewDrug(Drug drug)
-            {
-                File.AppendAllText("Temp.txt", drug.ToString());
-            }
-
-            public void UpdateDrug(Drug drug)
-            {
-                throw new NotImplementedException();
-            }
-        }
-        class DrugListManager : IDrugManager
-        {
-            private List<Drug> _drugs = new List<Drug>();
-            public void DeleteDrug(int id)
-            {
-                throw new NotImplementedException();
-            }
-
-            public Drug[] FindDrug(string name)
-            {
-                throw new NotImplementedException();
-            }
-
-            public Drug FindDrug(int drugNo)
-            {
-                throw new NotImplementedException();
-            }
-
-            public void RegisterNewDrug(Drug drug)
-            {
-                _drugs.Add(drug);
-            }
-
-            public void UpdateDrug(Drug drug)
-            {
-                throw new NotImplementedException();
-            }
-        }
         class DrugManager : IDrugManager
         {
             private Drug[] _drugs = new Drug[100];//Limitation of the Array, its fixed in size...
+            public DrugManager()
+            {
+                RegisterNewDrug(new Drug { DrugNo =1, Composition ="SimpleComposition", DateOfManufacture = DateTime.Now.AddDays(15), Name ="SampleDrug1", Price = 600 });
+                RegisterNewDrug(new Drug { DrugNo = 2, Composition = "ExampleComposition", DateOfManufacture = DateTime.Now.AddDays(45), Name = "SampleDrug2", Price = 60 });
+                RegisterNewDrug(new Drug { DrugNo = 3, Composition = "SampleExampleComposition", DateOfManufacture = DateTime.Now.AddDays(41), Name = "SampleDrug3", Price = 50 });
+                RegisterNewDrug(new Drug { DrugNo = 4, Composition = "ExampleSimpleComposition", DateOfManufacture = DateTime.Now.AddDays(12), Name = "SampleDrug4", Price = 780 });
+                RegisterNewDrug(new Drug { DrugNo = 5, Composition = "VerySampleComposition", DateOfManufacture = DateTime.Now.AddDays(70), Name = "SampleDrug5", Price = 80 });
+            }
             public void DeleteDrug(int id)
             {
                 throw new NotImplementedException();
@@ -117,22 +71,47 @@ namespace SampleConApp_Day6
 
             public Drug[] FindDrug(string name)
             {
-                throw new NotImplementedException();
+                Drug[] drugs = new Drug[100];
+                int index = 0;
+                foreach (Drug drug in _drugs)
+                {
+                    if ((drug != null )&& (drug.Name.Contains(name)))
+                    {
+                        drugs[index] = new Drug();
+                        drugs[index].Copy(drug);
+                        index++;
+                    }
+                    else continue;
+                }
+                return drugs;
             }
-
+            /// <summary>
+            /// Finds a single Drug based on the Id. 
+            /// </summary>
+            /// <param name="drugNo">ID of the Drug to find</param>
+            /// <returns>First Occurance of the Drug with matching ID</returns>
+            /// <exception cref="Exception">No Drug was found</exception>
             public Drug FindDrug(int drugNo)
             {
-                throw new NotImplementedException();
+                foreach (Drug item in _drugs)//iterate the collection
+                {
+                    if(item != null && item.DrugNo == drugNo)
+                    {
+                        return item;
+                    }
+                }
+                throw new Exception($"No Drug by ID {drugNo} is found in our database");
             }
+
 
             public void RegisterNewDrug(Drug drug)
             {
-                for(int i =0; i < 100; i++)
+                for(int i =0; i < 100; i++)//iterating thru the elements
                 {
-                    if(_drugs[i] == null)
+                    if(_drugs[i] == null)//find the first occurance of null object.
                     {
-                        _drugs[i] = new Drug();
-                        _drugs[i].Copy(drug);
+                        _drugs[i] = new Drug();//create the instance
+                        _drugs[i].Copy(drug);//copy the values into the specific element
                         return;//Exit the function after the copy is done;
                     }
                 }
@@ -141,7 +120,16 @@ namespace SampleConApp_Day6
 
             public void UpdateDrug(Drug drug)
             {
-                throw new NotImplementedException();
+                for (int i = 0; i < 100; i++)//iterate thru the elements
+                {
+                    //find the matching drug based on id
+                    if ((_drugs[i] != null) && (_drugs[i].DrugNo == drug.DrugNo))
+                    {
+                        _drugs[i].Copy(drug);//set the new values
+                        return;//exit the function
+                    }
+                }
+                throw new Exception($"No drug found by this ID {drug.DrugNo} to update");
             }
         }
     }
@@ -151,7 +139,7 @@ namespace SampleConApp_Day6
     /// </summary>
     internal class e2eApp
     {
-        private static DataLayer.IDrugManager mgr = new DataLayer.DrugFileManager();//instantiating the object.
+        private static DataLayer.IDrugManager mgr = new DataLayer.DrugManager();//instantiating the object.
         static void Main(string[] args)
         {
             string menu = File.ReadAllText(args[0]);//API of the .NET to get all the text content of a file...
@@ -171,8 +159,18 @@ namespace SampleConApp_Day6
                     addDrugHelper();
                     return true;
                 case "U":
+                    updateDrugHelper();
+                    return true;
                 case "F":
+                    string name = Input.GetAnswer("Enter the name of the drug to find");
+                    var records = mgr.FindDrug(name);
+                    displayRecords(records);
+                    return true;
                 case "I":
+                    int id = Input.GetNumber("Enter the Id of the drug to find");
+                    var record = mgr.FindDrug(id);
+                    displayRecords(record);
+                    return true;
                 case "D":
                     return true;
                 default:
@@ -180,14 +178,62 @@ namespace SampleConApp_Day6
             }
         }
 
-        private static void addDrugHelper()
+        private static void displayRecords(object records)//records could be array or single record.
+        {
+            if((records != null) && (records.GetType() == typeof(Drug[])))
+            {
+                Drug[] unBoxed = (Drug[])records;
+                foreach (Drug drg in unBoxed)
+                {
+                    if (drg != null)
+                    {
+                        Console.WriteLine(drg.Name);
+                    }
+                }
+            }
+            else
+            {
+                if(records is Drug)
+                {
+                    Drug drg = records as Drug;
+                    Console.WriteLine(drg.Name);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Helper function that takes inputs and updates the data into the system
+        /// </summary>
+        private static void updateDrugHelper()
+        {
+            Drug drug = createDrug();
+            try
+            {
+                mgr.UpdateDrug(drug);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Helper to create Drug object.
+        /// </summary>
+        /// <returns></returns>
+        private static Drug createDrug()
         {
             int id = Input.GetNumber("Enter the ID for the Drug");
             string name = Input.GetAnswer("Enter the name for the drug");
-            string composition = Input.GetAnswer("Enter the Composition seperated by ,");
+            string composition = Input.GetAnswer("Enter the Composition seperated by -");
             double price = Input.GetDouble("Enter the cost for 10 Units");
             DateTime doM = Input.GetDate("Enter the Manufacturing date");
-            Drug drg = new Drug { Composition = composition, DateOfManufacture = doM, DrugNo = id,  Name = name, Price = price};
+            Drug drg = new Drug { Composition = composition, DateOfManufacture = doM, DrugNo = id, Name = name, Price = price };
+            return drg;
+        }
+        private static void addDrugHelper()
+        {
+            Drug drg = createDrug();
             try
             {
                 mgr.RegisterNewDrug(drg);
