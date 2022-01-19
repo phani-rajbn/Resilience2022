@@ -1,7 +1,7 @@
 # Resilience2022
 Training program on .NET
 ## Course outline for C#, ASP.NET and JavaScript
-## C#	Programming constructs	4	
+## C#	Programming constructs	
 - C# Programming Basics 4
 - Understanding Visual Studio	
 - Classes and Objects	
