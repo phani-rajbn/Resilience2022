@@ -1,0 +1,8 @@
+﻿~~~~~~~~~~~~~~~DRUG MANAGEMENT SOFTWARE~~~~~~~~~~~~~~~~~~~~~~~~
+TO REGISTER NEW DRUG------------>PRESS N
+TO UPDATE THE DRUG-------------->PRESS U
+TO DELETE A DRUG---------------->PRESS D
+TO FIND BY NAME----------------->PRESS F
+TO FIND BY ID------------------->PRESS I
+PS: ANY OTHER KEY IS CONSIDERED AS EXIT.....
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
