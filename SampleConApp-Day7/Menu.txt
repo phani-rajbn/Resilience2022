@@ -1,0 +1,8 @@
+﻿---------------EMPLOYEE MANAGEMENT SYSTEM--------------------
+TO ADD NEW EMPLOYEE-------------->PRESS 1
+TO DELETE EMPLOYEE--------------->PRESS 2
+TO FIND EMPLOYEE BY NAME--------->PRESS 3
+TO FIND EMPLOYEE BY ID----------->PRESS 4
+TO UPDATE AN EMPLOYEE------------>PRESS 5
+PS: PRESS OTHER KEY TO EXIT
+--------------------------------------------------------------
