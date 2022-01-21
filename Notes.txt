@@ -153,7 +153,36 @@ All data types in .NET are directly or indirectly derived from System.Object. Th
 	With this class comes a set of methods that can be overriden to meet the business requirements of the object. 
 When a value is stored in the form of object, it is said to be boxed. If any specific functions of the type  needs to be called, U must downcast it back to the same type of the value. The reconversion of the object to the type of the value is called as UNBOXING. Unboxing is explicit operation.
 I need to create the data as object if I am not sure about the data type at compile Time. Imagine function that returns a type based on the input given by the user. In this case, the data type is dependent only on the inputs which is given at runtime only. UR return type for this kind of function would be object. Caller of the function will unbox to the type he wants and consume the data. 
+---------------------------------Frameworks of .NET--------------------------------------------------
+Framework contains libraries and Classes that can be used to perform certain features into ur application. This includes Collections, File IO, Multi Threading, Services, User interfaces, Web App development, desktop development and many more. In most of the scenarios, U will be using these APIs in ur code to get a certain functionality within UR application. 
+Very popular frameworks: MFC, Java Frameworks, .NET Framework, CodeIgniter(MVC for php Apps)
+1. Object Peristance(Saving and loading)(File IO, Database)
+2. No good User interface.(WinForms, Web Forms, ASP.NET MVC) 
+3. No scalability feature(Services like WCF, Web API)
+4. Performance: Multi Threading. 
+5. Data storage in Memory: Collections instead of Arrays. 
+Collections and Generics:
+Collections Framework provided by .NET are of 2 layers: Non Generic Collections and Generic Collections. 
+Non Generic Collections are collection classes available since the v1.0 of .NET. They store  the data in the form of objects. Performance was an issue as U were supposed to unbox the data when U want to read them. Examples of those classes are: ArrayList, HashTable, LinkedList and many more. They were available under the namespacce System.Collections.
+Generic versions based on Templates of C++ was introduced in the v2.0 of .NET where we got type safe collections. Now for all new development, we use Generic Collections. System.Collections.Generic is the namespace for all the classes and interfaces of Generic Collections. 
 
+File IO operations:
+File IO is about handling files in ur OS. System.IO is the namespace used for interacting with files. There is a static class called File that allows to perform common operations with files like writing, appending, removing and saving the content. There are APIs for directories and Drives on which U can create the components required to do the same.  
+Even though we have file management APIs to do all operations related to files including text based files and Binary Files,  it is really hard to read/write data into any section within the file. In such cases, U should convert the data into some object based format, make changes to it and rewrite the values back. For very large files, this kind of operation will not be optimized. 
 
+It is good to store object into the file instead of data of the object. The way of saving the object instead of data is called Serialization. Serialization is available in all technologies for doing IPC of objects from one app to another. Storing objects instead of data will also be secured. 
+In .NET serialization can be achieved in 3 ways: Binary serialization, XML serialization and SOAP serialization. 
+All serializations need 3 common points:
+What to serialize?: objects of class that have attributes(Annotations) called [Serializable]
+Where to serialize? FileStreams, Memory streams, PipeStreams.
+How to serialize? Format of serialization: Binary or XML based.
 
+For XML serialization, the class whose object needs to be serialized, should be a public class. U need not have serializable attribute.
 
+Assessment:
+Create a menu driven program to allow the application to store the data in a file using XML/Binary Serialization. The Application should be taking the inputs from the user and store the data. The App should allow the user to select the choice of operation like insert, delete, update or find record on which the application should do accordingly. The data can be the choice of the programmer. This could be PatientRecord, Movie Record, Customer record, Book record or any one of these. The Application should be executable without any abnormal termination. the app should terminate only when the user wishes to do so. The data will be stored in the file thru' Serialization. 
+Points:
+Should handle all kinds of Exception. 
+Should be menu driven, all data inputs should come from the user and displayed on the Console.
+No hard coding except the filename of the serialized data. 
+Follow the naming conventions and should be professional.
