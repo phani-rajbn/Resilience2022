@@ -25,6 +25,14 @@ namespace SampleConApp_Day8
             }
 
         }
+        static void readAnddisplayData()
+        {
+            createObjectsFromFile();
+            foreach (Employee emp in employees)
+            {
+                Console.WriteLine($"{emp.EmpName} comes from {emp.EmpAddress}");
+            }
+        }
         static void Main(string[] args)
         {
             //////////////////////////Reading all the content and display//////////////////////////////////////
@@ -58,13 +66,6 @@ namespace SampleConApp_Day8
             //////////////////////////////////////////////////////////////////////////////////////////////////////////
         }
 
-        private static void readAnddisplayData()
-        {
-            createObjectsFromFile();
-            foreach (Employee emp in employees)
-            {
-                Console.WriteLine($"{emp.EmpName} comes from {emp.EmpAddress}");
-            }
-        }
+       
     }
 }
