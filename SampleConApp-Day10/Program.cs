@@ -11,9 +11,72 @@ namespace SampleConApp_Day10
         static void Main(string[] args)
         {
             //readTheRecords();
-            Console.WriteLine("Enter the ID of the Employee to search");
-            findRecordById(int.Parse(Console.ReadLine()));
+            //Console.WriteLine("Enter the ID of the Employee to search");
+            //findRecordById(int.Parse(Console.ReadLine()));
+            //addNewEmployee("Priyanka", "Baroda", 55000, 2);//modify the code to take inputs from user and pass it into the func.
+            //updateEmployee(105, "Priyanka Gulia", "Varodara", 55000, 2);
+            //List<Employee> employees = getAllEmployees();
+            //Create a Class called Employee, implement the getAllEmployees function that returns the data as List<Employee>.
+            //Use the return data and display it on Console by overriding the ToString method to display it as Coma seperated values. 
         }
+
+        private static void updateEmployee(int id, string name, string address, int salary, int deptId)
+        {
+            var query = "Update EmpTable Set Empname = @name, EmpAddress = @address, EmpSalary = @salary, DeptID = @deptId where EmpID = @id";//Write the query.
+            //Create the connection object
+            using (SqlConnection conn = new SqlConnection(strCon))//create the Connection object.
+            {
+                var cmd = new SqlCommand(query, conn); //create the Command object
+                cmd.Parameters.AddWithValue("@name", name);
+                cmd.Parameters.AddWithValue("@address", address);
+                cmd.Parameters.AddWithValue("@salary", salary);
+                cmd.Parameters.AddWithValue("@deptId", deptId);
+                cmd.Parameters.AddWithValue("@id", id);
+                try
+                {
+                    conn.Open();
+                    cmd.ExecuteNonQuery();//execute the query
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    conn.Close();//close the resources
+                }
+            }
+        }
+
+        private static void addNewEmployee(string name, string address, int salary, int deptId)
+        {
+            
+            //var query = $"Insert into EmpTable values('{name}','{address}', {salary}, {deptId})";
+             var query = "Insert into EmpTable values(@name, @address, @salary, @deptId)";//Write the query.
+            //Create the connection object
+            using(SqlConnection conn = new SqlConnection(strCon))//create the Connection object.
+            {
+                var cmd = new SqlCommand(query, conn); //create the Command object
+                cmd.Parameters.AddWithValue("@name", name);
+                cmd.Parameters.AddWithValue("@address", address);
+                cmd.Parameters.AddWithValue("@salary", salary);
+                cmd.Parameters.AddWithValue("@deptId", deptId);
+                try
+                {
+                    conn.Open();
+                    cmd.ExecuteNonQuery();//execute the query
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    conn.Close();//close the resources
+                }
+            }
+        }
+
         //Finds the matching record and displays..
         private static void findRecordById(int empId)
         {
