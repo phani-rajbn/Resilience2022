@@ -1,9 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;//Namespace that contains classes to connect to SQL server database exclusively...
 using System.Diagnostics;
 
 namespace SampleConApp_Day10
 {
+    class Employee
+    {
+        public int DeptId  { get; set; }
+        public int EmpSalary { get; set; }
+        public string EmpAddress { get; set; }
+        public string EmpName { get; set; }
+        public int EmpID { get; set; }
+    }
     internal class ConnectedDemo
     {
         const string strCon = @"Data Source=.\SQLEXPRESS;Initial Catalog=ResilienceDemo;Integrated Security=True";
@@ -15,9 +24,35 @@ namespace SampleConApp_Day10
             //findRecordById(int.Parse(Console.ReadLine()));
             //addNewEmployee("Priyanka", "Baroda", 55000, 2);//modify the code to take inputs from user and pass it into the func.
             //updateEmployee(105, "Priyanka Gulia", "Varodara", 55000, 2);
-            //List<Employee> employees = getAllEmployees();
+            
             //Create a Class called Employee, implement the getAllEmployees function that returns the data as List<Employee>.
-            //Use the return data and display it on Console by overriding the ToString method to display it as Coma seperated values. 
+            //Use the return data and display it on Console by overriding the ToString method to display it as Coma seperated values.
+            List<Employee> employees = getAllEmployees();
+            foreach (var emp in employees) Console.WriteLine(emp.EmpName);
+        }
+
+        private static List<Employee> getAllEmployees()
+        {
+            List<Employee> list = new List<Employee>(); ;
+            using(SqlConnection con = new SqlConnection(strCon))
+            {
+                var cmd = con.CreateCommand();
+                cmd.CommandText = "Select * from EmpTable";
+                con.Open();
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    var emp = new Employee();
+                    emp.EmpID = Convert.ToInt32(reader[0]);
+                    emp.EmpName = reader[1].ToString();
+                    emp.EmpAddress = reader[2].ToString();
+                    emp.EmpSalary = Convert.ToInt32(reader[3]);
+                    emp.DeptId = Convert.ToInt32(reader[4]);
+                    list.Add(emp);
+                }
+                con.Close();
+            }
+            return list;
         }
 
         private static void updateEmployee(int id, string name, string address, int salary, int deptId)
