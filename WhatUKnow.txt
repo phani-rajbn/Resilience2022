@@ -1,0 +1,28 @@
+What is a class?
+How to create a Soln and a project in VS?
+How to run an App in VS?
+How to add existing files in VS?
+How to add new files to the VS?
+How to create Main function and pass args to the Main function in VS?
+How to create Class in C#?
+How to create functions in C# class?
+How to create fields/properties in C# class?
+Difference b/w static and non static members of a class?
+How to call a non static member in a static method and the reverse of it?
+How to create an object of a class in C#? Do U need an object always to call the members of a class?
+How to create statements and Expressions?
+How to create variables in a function and in a class? Scope of the variables declared. 
+Differ b/w local variables, data members and how to call data members if a local variable is created with the same name.(this)
+How to provide encapsulation?
+How to implement inheritance? Is there multiple Inheritance in C#?
+Method overloading in C#? Compile time polymorphism
+Method overriding in C#? Runtime Polymorphism
+Abstract classes in C# and its variations.
+Interface programming. 
+Sealed Classes.
+Delegates and Events, Lambda Expressions, Anonymous methods...
+Multi Threading features: Thread class, Lambda Expressions, lock and Monitor. 
+Collections using Generics: List<T>, Dictionary<K,V>, HashSet<T>, Queue<T>, Stack<T>....
+Explore : IEnumerable<T> vs. IEnumerator<T>, IComparable<T> and IComparer<T>.
+File Handling in C#: File class, FileStream, Serialization(Binary and Xml). Create an Example for storing collection data thru' Serialization. Understand the problems of Serialization and File Handling.
+How to debug a Code in VS? F5, F10, F11, Watch Window, Output Window....
