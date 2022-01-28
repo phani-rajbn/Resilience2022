@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ResilienceDemo" Class="ExampleDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=ResilienceDemo;Integrated Security=True" SettingsObjectName="SampleConApp_Day12.Properties.Settings" SettingsPropertyName="ResilienceDemoConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Dept" Member="Depts">
+    <Type Name="Dept">
+      <Column Name="DeptID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DeptName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Dept_EmpTable" Member="EmpTables" ThisKey="DeptID" OtherKey="DeptID" Type="EmpTable" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EmpTable" Member="EmpTables">
+    <Type Name="EmpTable">
+      <Column Name="EmpId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EmpName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="EmpAddress" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="EmpSalary" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="DeptID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Dept_EmpTable" Member="Dept" ThisKey="DeptID" OtherKey="DeptID" Type="Dept" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
