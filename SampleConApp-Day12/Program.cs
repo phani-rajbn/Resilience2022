@@ -6,7 +6,11 @@ using System.Linq;
 //ORM: Object Relational Mapping is a design pattern of interacting with databases without using SQL. Here we convert the data into object oriented objects and perform queries on the objects using language based queries and Collection related APIs. 
 //Hibernate, FastObjectsToSQL(ORM for CPP), LINQ to SQL, EF, nHibernate are some of the ORM technologies. 
 //The idea is to reduce the usage of SQL for a Front end developer.
-
+//Install LINQ to SQL Component from VS Installer
+//Project->Add New Item->LINQ to SQL Classes->*.dbml
+//Configure the SQL server to UR server explorer of the VS.
+//Drag and drop the tables on which U want to perform LINQ into the ORM Designer(DBML file).
+//Context class will be the FileName of the DBML suffixed with DataContext. 
 namespace SampleConApp_Day12
 {
     internal class Program
