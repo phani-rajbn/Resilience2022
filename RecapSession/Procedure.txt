@@ -1,0 +1,29 @@
+## Stored Procedure
+CREATE PROCEDURE AddNewBook(
+	@bookid int,
+	@title varchar(200),
+	@price int, 
+	@authorId int,
+	@authorName varchar(100),
+	@authorAddress varchar(200)
+)
+AS
+	BEGIN
+	Insert into BookTable values(@bookid, @title, @price)
+	END
+	BEGIN
+	Insert into Author values(@authorId, @authorName, @authorAddress)
+	END
+	BEGIN
+	Insert into Author_Book values(@authorId, @bookid)
+	END
+RETURN 0
+
+
+## Author_Book link
+CREATE TABLE Author_Book
+(
+	Id int primary key identity(1,1),
+	AuthorId int NOT NULL References Author(AuthorId),
+	BookId int not null references BookTable(BookNo)
+)
