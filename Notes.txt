@@ -187,3 +187,68 @@ Should be menu driven, all data inputs should come from the user and displayed o
 No hard coding except the filename of the serialized data. 
 Follow the naming conventions and should be professional.
 
+Data Access using ADO.NET:
+ADO.NET is a framework of .NET to access databases of all kinds from a .NET Application. ADO.NET provides 2 kinds of data Access models: Connected Model and Disconnected Model. 
+Connected Model is used for Deskop based apps where the no of active connections will be known and are in small size of hundreds. In this model, the interaction b/w the database and the App will happen with a connection in open state. After the interaction is completed, it is the responsibility of the developer to close the connection so that other users can open it. As Connectivity to the database server is a costly resource, it will closed immediatly after the interaction with the database is done. 
+In disconnected model, data will be copied into an im memory object called DataSet and all the reading will happen on the dataset, while the connection is closed and usable for other users. This will be suited for apps that need high level of scalability.
+The classes required for the SQL Server database connection is available under System.Data.SqlClient. If U want to use another database like Oracle, MySQL U can download the DLLs from their respective websites and use them. 
+All database classes must implement the interfaces created by Microsoft under the namespace called System.Data.Common. 
+U can try connecting to other databases on ur own.
+
+Important classes:The prefix would be the database that U will connect
+xxxConnection: The class that is used to connect to the database. U need a connection string that contains the details of the database like Servername, dbname, credentials etc.  Open and Close methods are used to open and close the database connection from the application. CreateCommand method is used to create a SqlCommand object that is associated with the Connection. 
+xxxCommand: Used to pass SQL Commands to the selected database. UR Command(SQL Statement) could be executed in 3 ways: ExecuteReader for Select statements, ExecuteNonQuery for INSERT, DELETE and UPDATE statements, ExecuteScalar for single value statements(AGGREGATE Statements). 
+xxxDataReader: Is an forward only and read only object used to iterate thro the resultset obtained from ExecuteReader method of the Command object. Read method is used to move the cursor of the reader to the next record after reading the current one.
+
+New Features of C#:
+var keyword is used to declare local variables. They can store any kind of data but once assigned, will become implicit of that data type. U dont need to box or unbox while U work with var keyword. 
+Anonymous Types: U can create objects of un-named types in UR code. 
+Using LINQ for DB Access.
+
+----------------------------------ASP.NET MVC---------------------------------------------------------
+U want a Web App to be developed. MVC is a design pattern where there is a clean seperation of Presentation(HTML), Models(Data in the form of C# Classes) and a Controller which gets the data and pushes it into the Presentation. 
+ASP.NET MVC was introduced in 2013 version of VS. Before that we had ASP.NET Web Forms. Web Forms are GUI based HTML Content that used rich .NET Controls to present the data in the Application. They were very powerfull but it used to generate a lot of Unnessasary code-behind, which would be waste for a Simple Interaction b/w the Client and Server. During that time, HTML was not so advanced. .NET Controls were rich, powerfull and Object oriented and could be used to develop high level of secured and rich UI based Web Apps. 
+In MVC, Model is something that U want to show or get(data). View is how U want to show. View could be a combination of HTML and C#. Controller is a bridge b/w the Model and View to handle the Requests/Responses that come from the Customer 
+
+Why Web Forms was not suited for Multi device Apps?
+Web Forms Controls were rich, powerful and object oriented, but was very heavy for multiple device Applications. Rendering part of the Web Form used to take a lot of  time and unnessasary Codebehind.
+Many controls of Web Forms became obselete because of HTML improvizations. With HTML5, I could achieve the same validation feature with no additional Controls. With JS Frameworks, we were able to create User responsive web pages instead of Server side Web Pages. 
+ASP.NET web forms purely promotes server side programming, with very less capabilities on the Client side. JS was used only for validation instead of any other reasons. 
+
+How to create ASP.NET MVC App:
+Project Type: ASP.NET Web Application and Name it accordingly
+Pipeline: Check the option of MVC. Uncheck the HTTPS option. Click Create. 
+
+Folders:
+APP_START: Contains the files that are required for the startup of the Application. Settings of the MVC and Routing is done here. 
+Controllers: Place where U create UR Controllers(C# Classes which are derived from a class called MvcController) of the MVC.
+Models: Place where U create UR data classes and ORM Classes(LINQ and Entity)
+Views: Place where U create UR Views of the Models. A Sub folder will be created for every Controller and Views of that controller will be placed in it. 
+For Common list of Views, U have Shared folder where Views that can be used on all the Controllers could be created.
+A View with a model attached to it is called as STRONGLY TYPED VIEW.
+
+All Actions of the Controller can return a base result called as ActionResult. ActionResult is an abstract class which is the base class for all different kinds of Results from different actions. 
+Steps of creating mvc app:
+1. Create a controller class. This class contains functions called as ACTIONS which perform operations for the Application.
+2. For Actions that U need a presentation, those methods should return ViewResult object. A View in MVC is a file with an extension .cshtml(CS + HTML)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
