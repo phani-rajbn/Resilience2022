@@ -53,6 +53,11 @@ namespace SampleMvcApp.Controllers
 
         public ActionResult AddEmployee()
         {
+            var com = new DataComponent();
+            var depts = com.GetAllDepts();
+            var DeptList = from dept in depts
+                           select new SelectListItem { Text = dept.DeptName, Value = dept.DeptId.ToString() };
+            ViewBag.Depts = DeptList.ToList();//ViewBag is scoped to the action it is declared or used. 
             return View(new Employee());
         }
         [HttpPost]

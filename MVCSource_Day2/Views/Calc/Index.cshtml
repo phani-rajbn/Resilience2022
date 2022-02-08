@@ -1,0 +1,37 @@
+﻿
+@{
+    Layout = null;
+    var list = new List<SelectListItem>
+    { 
+        new SelectListItem{ Text ="Add" },
+        new SelectListItem{ Text ="Subtract" },
+        new SelectListItem{ Text ="Multiply" },
+        new SelectListItem{ Text ="Divide" },
+    };
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <h1>My Calc Program</h1><hr />
+    @using (Html.BeginForm()) 
+    {
+       <p>Enter the First Value: @Html.Editor("firstValue")</p>
+       <p>Enter the Second Value: @Html.Editor("secondValue")</p>
+       <p>
+           Select the option:@Html.DropDownList("option", list)
+       </p>
+       <p><button>Calculate</button></p>
+    }
+    @if (TempData.ContainsKey("result")) 
+    {
+        <p>The Result of this operation: @TempData["result"]</p>
+    }
+</body>
+</html>

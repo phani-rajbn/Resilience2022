@@ -41,6 +41,36 @@ namespace SampleMvcApp.Models
             return list;
         }
 
+        public List<Dept> GetAllDepts()
+        {
+            var list = new List<Dept>();
+            using (SqlConnection con = new SqlConnection(CONNECTIONSTRING))
+            {
+                try
+                {
+                    con.Open();
+                    SqlCommand sqlCmd = con.CreateCommand();
+                    sqlCmd.CommandText = "SELECT * FROM Dept";
+                    var reader = sqlCmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        var dept = new Dept();
+                        dept.DeptId = Convert.ToInt32(reader[0]);
+                        dept.DeptName = reader[1].ToString();   
+                        list.Add(dept);
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+            return list;
+        }
         public Employee FindEmployee(int id)
         {
             Employee emp = new Employee();
@@ -103,11 +133,12 @@ namespace SampleMvcApp.Models
         {
             using (SqlConnection con = new SqlConnection(CONNECTIONSTRING))
             {
-                var query = "Insert into EmpTable values(@name, @address, @salary, 3)";
+                var query = "Insert into EmpTable values(@name, @address, @salary, @deptId)";
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@name", emp.EmpName);
                 cmd.Parameters.AddWithValue("@address", emp.EmpAddress);
                 cmd.Parameters.AddWithValue("@salary", emp.EmpSalary);
+                cmd.Parameters.AddWithValue("@deptId", emp.DeptId);
                 try
                 {
                     con.Open();

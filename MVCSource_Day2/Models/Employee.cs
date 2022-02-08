@@ -5,12 +5,19 @@ using System.Web;
 
 namespace SampleMvcApp.Models
 {
+    public class Dept
+    {
+        public string DeptName { get; set; }
+        public int DeptId { get; set; }
+    }
     public class Employee
     {
         public int EmpId { get; set; }
         public string EmpName { get; set; }
         public string EmpAddress { get; set; }
         public int EmpSalary { get; set; }
+        public int DeptId { get; set; }
+        public Dept DeptInfo { get; set; }
 
         //Not required if U R creating a View for the Action. 
         public override string ToString()
