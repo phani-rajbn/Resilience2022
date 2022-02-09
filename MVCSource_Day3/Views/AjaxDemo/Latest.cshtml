@@ -1,0 +1,27 @@
+﻿@model List<SampleMvcApp.Models.Article>
+<style>
+    .rep{
+        font-size:0.8em;
+        font-style:italic;
+        justify-content:right;
+        display:inline-block;
+    }
+    .dt{
+        font-size:0.8em;
+        font-style:italic;
+        justify-content:right;
+        display:inline-block;
+    }
+</style>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="card col-6 text-white bg-info mb-4" style="max-width: 18rem;">
+            <div class="card-header">@item.Reporter: @item.Date</div>
+            <div class="card-body">
+                <h5 class="card-title">@item.Title</h5>
+                <p class="card-text">@item.Content</p>
+            </div>
+        </div>
+    }
+</div>

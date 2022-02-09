@@ -1,0 +1,40 @@
+﻿@model SampleMvcApp.Models.Employee
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Update</title>
+</head>
+<body>
+    <div>
+        <h1>Details of @Model.EmpName</h1>
+        @using (Html.BeginForm()) 
+        {
+            <p>
+                @Html.LabelFor((m)=>m.EmpId)
+                @Html.DisplayFor((m)=>m.EmpId)
+                @Html.HiddenFor((m)=>m.EmpId)
+            </p>
+            <p>
+                @Html.LabelFor((m)=>m.EmpName)
+                @Html.TextBoxFor((m)=>m.EmpName)
+            </p>
+            <p>
+                @Html.LabelFor((m)=>m.EmpAddress)
+                @Html.TextBoxFor((m)=>m.EmpAddress)
+            </p>
+            <p>
+                @Html.LabelFor((m)=>m.EmpSalary)
+                @Html.TextBoxFor((m)=>m.EmpSalary)
+            </p>
+
+            <button>Save changes</button>                    
+        }
+    </div>
+</body>
+</html>
