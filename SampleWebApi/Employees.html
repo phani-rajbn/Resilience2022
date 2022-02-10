@@ -18,37 +18,95 @@
     <script src="Scripts/jquery-1.8.0.min.js"></script>
     <script>
         let url = "/api/Employee";
+        let selectedId = "";
+        function getRecord() {
+            if (selectedId == "") {
+                alert("No record is selected")
+                return 0;
+            }
+            let tempUrl = url + "/" + selectedId;
+            $("article").hide(2000);
+            $("#updateSection").show(2000);
+            $.get(tempUrl, (data) => {
+                $("#txtId").val(data.EmpId)
+                $("#txtOldName").val(data.EmpName)
+                $("#txtOldAddress").val(data.EmpAddress)
+                $("#txtOldSalary").val(data.EmpSalary)
+                $("#txtOldDept").val(data.DeptID)
+            })
+            $("#updateSection> button").click(function () {
+                let emp = {};
+                emp.EmpId = $("#txtId").val();
+                emp.EmpName = $("#txtOldName").val();
+                emp.EmpAddress = $("#txtOldAddress").val();
+                emp.EmpSalary = parseInt($("#txtOldSalary").val());
+                emp.DeptID = parseInt($("#txtOldDept").val());
+                //jQuery for update..
+                $.ajax({
+                    'url': url,
+                    'type': 'PUT',
+                    'data': emp,
+                    'success': function (data) {
+                        debugger;
+                        alert(data);
+                    }
+                });
+            });
+        }
+        function showRecords() {
+            $("section").hide(2000);
+            $("article").show(1000);
+            $("article").text("");
+            $.get(url, (data) => {
+                $.each(data, (index, value) => {
+                    //$("table").append(`<tr><td>${value.EmpId}</td><td>${value.EmpName}</td><td>${value.EmpAddress}</td><td>${value.EmpSalary}</td></tr>`)
+                    let markUp = `<div><h1>${value.EmpName}</h1><hr/><p>EmpID: ${value.EmpId}</p><p>Emp Address: ${value.EmpAddress}</p><p>Emp Salary: ${value.EmpSalary}</p><p><button class="edit" parameter="${value.EmpId}">Edit</button></p></div>`
+                    $("article").append(markUp);
+                })
+            }).done(function () {
+                $(".edit").click(function () {
+                    debugger;
+                    selectedId = $(this).attr("parameter");
+                    getRecord();
+                })
+            })
+        }
+
+        function addRecord() {
+            //create the emptable object.
+            let emp = {};
+            emp.EmpName = $("#txtName").val();
+            emp.EmpAddress = $("#txtAddress").val();
+            emp.EmpSalary = parseInt($("#txtSalary").val());
+            emp.DeptID = parseInt($("#txtDept").val());
+
+            $.post(url, emp, function (data) {
+                debugger;
+                alert(data);
+            })
+        }
         $(document).ready(function () {
             $("article").hide(2000);
             $("section").hide(2000);
-            $("a:eq(0)").click(function () {
-                $("section").hide(2000);
-                $("article").show(1000);
-                $.get(url, (data) => {
-                    $.each(data, (index, value) => {
-                        //$("table").append(`<tr><td>${value.EmpId}</td><td>${value.EmpName}</td><td>${value.EmpAddress}</td><td>${value.EmpSalary}</td></tr>`)
-                        let markUp = `<div><h1>${value.EmpName}</h1><hr/><p>EmpID: ${value.EmpId}</p><p>Emp Address: ${value.EmpAddress}</p><p>Emp Salary: ${value.EmpSalary}</p>`
-                        $("article").append(markUp);
-                    })
-                })
-            })
+            $("a:eq(0)").click(showRecords);
 
             $("a:eq(1)").click(function () {
                 $("article").hide(2000);
                 $("section").show(2000);
-                $("button").click(function () {
-                    //create the emptable object.
-                    let emp = {};
-                    emp.EmpName = $("#txtName").val();
-                    emp.EmpAddress = $("#txtAddress").val();
-                    emp.EmpSalary = parseInt($("#txtSalary").val());
-                    emp.DeptID = parseInt($("#txtDept").val());
+                $("button").click(addRecord);
+            })
 
-                    $.post(url, emp, function (data) {
+            $("#aDelete").click(function () {
+                let id = parseInt(prompt("Enter the ID to delete"))
+                let temp = url + "/" + id;
+                $.ajax({
+                    'url': temp,
+                    'type': 'DELETE',
+                    'success': function (data) {
                         debugger;
                         alert(data);
-                    })
-                })
+                    }
+                });
             })
         })
     </script>
@@ -57,6 +115,7 @@
     <nav>
         <a href="#">Show Records</a>
         <a href="#">Add Employee</a>
+        <a href="#" id="aDelete">Delete Employee</a>
     </nav>
     <hr />
     <!--<table border="1">
@@ -70,6 +129,15 @@
     <article>
 
     </article>
+    <section id="updateSection">
+        <h1>Update Employee</h1><hr />
+        <p>Emp ID: <input type="text" id="txtId" /></p>
+        <p>Emp Name: <input type="text" id="txtOldName" /></p>
+        <p>Emp Address: <input type="text" id="txtOldAddress" /></p>
+        <p>Emp Salary: <input type="number" id="txtOldSalary" /></p>
+        <p>Emp Dept: <input type="number" id="txtOldDept" /></p>
+        <button type="button">Save Changes</button>
+    </section>
     <section>
         <h1>Add new Employee</h1><hr />
         <p>Emp Name: <input type="text" id="txtName"/></p>
