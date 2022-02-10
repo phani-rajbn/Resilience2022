@@ -1,0 +1,45 @@
+﻿
+@{
+    Layout = null;
+    var options = new AjaxOptions
+    {
+        UpdateTargetId = "myArea",
+        InsertionMode = InsertionMode.Replace
+    };
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Home</title>
+    <style>
+        .navDiv {
+            height: 40px;
+            text-align: center;
+            padding: 5px;
+            margin: 5px;
+            background-color: lightcoral;
+            color: aliceblue;
+        }
+    </style>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.8.0.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+</head>
+<body>
+    <div>
+        <h1>Ajax Features in ASP.NET MVC</h1><hr />
+        <p>This page is designed to create Single Page Application(SPA)</p>
+        <p>This App will give latest information of the news of the Portal</p>
+    </div>
+    <div class="navDiv">
+        @Ajax.ActionLink("Latest News", "Latest", options)
+        @Ajax.ActionLink("Add New", "NewArticle", options)
+        @Ajax.ActionLink("About Us", "AboutUs", options)
+    </div>
+    <div id="myArea">
+        <p>Test code</p>
+    </div>
+</body>
+</html>

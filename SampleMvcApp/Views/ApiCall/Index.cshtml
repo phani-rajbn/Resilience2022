@@ -1,0 +1,31 @@
+﻿@model string
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <script src="~/Scripts/jquery-1.8.0.min.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script>
+        let url = "http://localhost:56669/api/Employee";
+        //$(document).ready(function () {
+        //    $.get(url, (data) => {
+        //        $.each(data, (index, value) => {
+        //            //$("table").append(`<tr><td>${value.EmpId}</td><td>${value.EmpName}</td><td>${value.EmpAddress}</td><td>${value.EmpSalary}</td></tr>`)
+        //            let markUp = `<div><h1>${value.EmpName}</h1><hr/><p>EmpID: ${value.EmpId}</p><p>Emp Address: ${value.EmpAddress}</p><p>Emp Salary: ${value.EmpSalary}</p><p><button class="edit" parameter="${value.EmpId}">Edit</button></p></div>`
+        //            $("article").append(markUp);
+        //        })
+        //    })
+        //})
+    </script>
+</head>
+<body>
+    <article>
+        @Model
+    </article>
+</body>
+</html>

@@ -1,0 +1,10 @@
+﻿@model SampleMvcApp.Models.Article
+@using (Html.BeginForm())
+{
+    <h1>Post new News Article</h1>
+    <hr />
+    <p> Enter the Title: @Html.EditorFor((m) => m.Title)</p>
+    <p> Enter the Content: @Html.EditorFor((m) => m.Content)</p>
+    <p> Type UR Name: @Html.EditorFor((m) => m.Reporter)</p>
+    <p><button>Post</button></p>
+}

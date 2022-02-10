@@ -1,0 +1,41 @@
+﻿@model SampleMvcApp.Models.Employee
+
+@{
+    Layout = null;
+    List<SelectListItem> depts = new List<SelectListItem>();
+    if(ViewBag.Depts != null)
+    {
+        depts = ViewBag.Depts as List<SelectListItem>;
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddEmployee</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Add new Employee to the System</h1>
+    <hr />
+    @using (Html.BeginForm()) 
+    {
+        <p>Enter the Name: @Html.EditorFor((m)=>m.EmpName)</p>
+        <p>Enter the Address: @Html.EditorFor((m)=>m.EmpAddress)</p>
+        <p>Enter the Salary: @Html.EditorFor((m)=>m.EmpSalary)</p>
+        <p>Select the Dept: @Html.DropDownListFor((m)=>m.DeptId, depts)</p>
+        <p><button>Save Changes</button></p>   
+    }
+    <div>
+        @if(ViewBag.Message != null) 
+        {
+            <span style="color:red">@ViewBag.Message</span>
+        }
+    </div>
+    <div>
+        @Html.ActionLink("Back to List", "AllEmployees")
+    </div>
+</body>
+</html>
