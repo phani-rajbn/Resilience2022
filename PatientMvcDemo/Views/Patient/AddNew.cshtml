@@ -1,0 +1,22 @@
+﻿@model SampleDataLib.Entities.Patient
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddNew</title>
+</head>
+<body>
+    @using (Html.BeginForm()) { 
+        <p>Enter the Name: @Html.EditorFor((p)=>p.PatientName)</p>
+        <p>Enter the Address: @Html.EditorFor((p)=>p.PatientAddress)</p>
+        <p>Enter the BillAmount: @Html.EditorFor((p)=>p.BillAmount)</p>
+        <button>Save Record</button>
+    }
+</body>
+</html>

@@ -1,0 +1,31 @@
+﻿@model  List<SampleDataLib.Entities.Patient>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+        <h1>Welcome to Patient Record System</h1>
+    </div>
+    <nav>
+        @Html.ActionLink("Add New", "AddNew")
+    </nav>
+    @foreach (var p in Model)
+    {
+        <div style="border:2px solid green">
+            <h1>@p.PatientName</h1><hr />   
+            <p>@p.PatientAddress</p>
+            <p>@p.BillDate.ToShortDateString()</p>
+            <p>@p.BillAmount</p>
+        </div>
+    }
+</body>
+</html>
