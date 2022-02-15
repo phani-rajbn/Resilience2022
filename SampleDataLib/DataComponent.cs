@@ -17,7 +17,9 @@ namespace SampleDataLib.DataLayer
     using SampleDataLib.Entities;
     using System.Collections.Generic;
     using SampleDataLib.DataComponents;
+    using System.Configuration;
     using System.Linq;
+    using System.Diagnostics;
     public interface IPatientDB
     {
         void AddNewPatient(Patient patient);
@@ -30,7 +32,15 @@ namespace SampleDataLib.DataLayer
     {
         public static IPatientDB CreateComponent()
         {
-            return new PatientDB();
+            Debug.WriteLine(ConfigurationManager.AppSettings["DataType"]);
+            switch (ConfigurationManager.AppSettings["DataType"])
+            {
+                case "SP": return new SPDataComponent();
+                case "EF": return new PatientDB();
+                default:
+                    throw new Exception("Not a valid Classname");
+            }
+            //return new PatientDB();
         }
     }
 
